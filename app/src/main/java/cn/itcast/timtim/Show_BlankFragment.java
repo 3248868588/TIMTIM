@@ -152,6 +152,7 @@ public class Show_BlankFragment extends Fragment {
 //                    myBaseadapter = new MyBaseadapter(getContext(), dataBeans);
 //                    listView_show.setAdapter(myBaseadapter);
                 } else {
+                    Log.d(TAG, "onResponse: ");
                 }
             }
         });
