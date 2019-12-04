@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:textColor="#0AAA10"
+        android:text="简介"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_Details"
+        android:textColor="#000"
+        android:text="南岸水云山庄农家乐位于长生桥镇新桥石河堰,可从南坪上南山后再经凉风垭到水云山庄，或者从外环高速到长生桥镇。"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
