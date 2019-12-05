@@ -46,7 +46,8 @@ public class Show_BlankFragment extends Fragment {
     ListView listView_show;
     MyBaseadapter myBaseadapter;
     List<attractions.DataBean> beanList = new ArrayList<>();
-    List<String> stringList = new ArrayList<>();
+    List<Integer> integerList = new ArrayList<>();
+    List<String> stringList=new ArrayList<>();
     View view;
     int i = 1, Id;
     SmartRefreshLayout smartRefreshLayout;
@@ -60,15 +61,14 @@ public class Show_BlankFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 getattrData(i);
-                Intent intent = new Intent();
-                Id = beanList.get(i).getSelfid();
+                Intent intent = new Intent(getActivity(), AttrDetails.class);
+                int Id = integerList.get(position);
                 Log.d("sss222", "onItemClick: " + beanList.get(i).getSelfid());
                 Log.d("sss222", "onItemClick: " + Id);
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", Id);
-                bundle.putString("name", beanList.get(i).getName());
+                bundle.putString("name", stringList.get(position));
                 intent.putExtras(bundle);
-                intent = new Intent(getActivity(), AttrDetails.class);
                 startActivity(intent);
             }
         });
@@ -118,10 +118,9 @@ public class Show_BlankFragment extends Fragment {
                     beanList = new ArrayList<>();
                     beanList = attractions.getData();
                     for (int i = 0; i < beanList.size(); i++) {
-                        Id = beanList.get(i).getSelfid();
-                        Log.d("sss", "onResponse: " + Id);
-                        Log.d("sss123", "onResponse: " + beanList.get(i).getSelfid());
-                        //stringList=beanList.get(i).getSelfid();
+                        //Id = beanList.get(i).getSelfid();
+                        integerList.add(beanList.get(i).getSelfid());
+                        stringList.add(beanList.get(i).getName());
                     }
 
                     myBaseadapter = new MyBaseadapter(getContext(), beanList);
@@ -152,7 +151,6 @@ public class Show_BlankFragment extends Fragment {
 //                    myBaseadapter = new MyBaseadapter(getContext(), dataBeans);
 //                    listView_show.setAdapter(myBaseadapter);
                 } else {
-                    Log.d(TAG, "onResponse: ");
                 }
             }
         });

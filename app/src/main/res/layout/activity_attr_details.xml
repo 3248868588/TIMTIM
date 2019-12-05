@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.35" />
+            app:layout_constraintGuide_percent="0.39" />
 
         <TextView
             android:id="@+id/textView3"
@@ -83,19 +83,19 @@
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintBottom_toTopOf="@+id/list_attrDetails"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView_attrimage" />
+
 
         <ImageView
             android:id="@+id/imageView_attrimage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,8 +106,8 @@
             android:id="@+id/list_attrDetails"
             android:layout_width="395dp"
             android:layout_height="415dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +121,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="28dp"
             android:text="景点名"
+            android:visibility="gone"
             android:textColor="#fff"
             android:textSize="20dp"
             android:textStyle="bold"

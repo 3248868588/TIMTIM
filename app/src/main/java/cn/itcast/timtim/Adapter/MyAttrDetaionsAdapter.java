@@ -12,12 +12,13 @@ import java.util.List;
 
 import cn.itcast.timtim.R;
 import cn.itcast.timtim.entity.Detais;
+import cn.itcast.timtim.entity.Titleandcontext;
 
 public class MyAttrDetaionsAdapter extends BaseAdapter {
     Context context;
-    List<Detais.DataBean.MapsBean> mapsBeanList;
+    List<Titleandcontext> mapsBeanList;
 
-    public void MyAttrDetaionsAdapter(Context context, List<Detais.DataBean.MapsBean> mapsBeanList) {
+    public MyAttrDetaionsAdapter(Context context, List<Titleandcontext> mapsBeanList) {
         this.context = context;
         this.mapsBeanList = mapsBeanList;
     }
@@ -51,8 +52,8 @@ public class MyAttrDetaionsAdapter extends BaseAdapter {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.textView_Details.setText(mapsBeanList.get(position).getTitle());
-        viewHolder.textView_title.setText(mapsBeanList.get(position).getContent());
+        viewHolder.textView_Details.setText(mapsBeanList.get(position).getContext());
+        viewHolder.textView_title.setText(mapsBeanList.get(position).getTitle());
         return view;
     }
 
