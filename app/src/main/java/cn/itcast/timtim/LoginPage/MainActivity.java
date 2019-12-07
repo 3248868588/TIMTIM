@@ -1,17 +1,18 @@
-package cn.itcast.timtim;
+package cn.itcast.timtim.LoginPage;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,8 +29,16 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+import cn.itcast.timtim.R;
 import cn.itcast.timtim.entity.UserInfo;
+import cn.itcast.timtim.tools.MD5;
 import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton imageButton_xx, imageButton_eyes;
@@ -46,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         bindView();
         initView();
         Initialize();
@@ -101,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
+            //输入格式验证
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String Str = editText_yanzhengmaorpassworld.getText().toString();
@@ -156,19 +167,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_getyanzhengma:
                 Sendmessage(editText_Emailnumberorphonenumber.getText().toString());
                 progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.setTitle("please wait for me a moment");
+                progressDialog.setTitle("等一哈就得行......");
                 progressDialog.setMessage("Loading......");
                 progressDialog.setCancelable(true);
                 progressDialog.show();
                 break;
             case R.id.btn_denglu:
                 progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.setTitle("please wait for me a moment");
+                progressDialog.setTitle("等一哈就得行......");
                 progressDialog.setMessage("Loading......");
                 progressDialog.setCancelable(true);
                 progressDialog.show();
-                login(editText_Emailnumberorphonenumber.getText().toString(), editText_yanzhengmaorpassworld.getText().toString());
+                if (textView_title.getText().equals("邮箱验证码登录")){
+                    login(editText_Emailnumberorphonenumber.getText().toString(), editText_yanzhengmaorpassworld.getText().toString());
+                }else {
+                    Loginpwd(editText_Emailnumberorphonenumber.getText().toString(),editText_yanzhengmaorpassworld.getText().toString());
+                }
                 break;
+
 
             case R.id.tv_youxaing:
                 Initialize();
@@ -182,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editText_yanzhengmaorpassworld.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 editText_yanzhengmaorpassworld.postInvalidate();
                 break;
+
+                //密码小眼睛
             case R.id.image_eyes:
                 if (!A) {
                     editText_yanzhengmaorpassworld1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -200,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //获取验证码
     private void Sendmessage(String Emailnumber) {
         OkHttpUtils.get().url("http://ven6.com/user/sendcode").addParams("email", Emailnumber)
                 .addParams("type", "100").build().execute(new StringCallback() {
@@ -225,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
+    //验证码登录
     public void login(String email, String code) {
         OkHttpUtils.get().url("http://ven6.com/user/login").addParams("email", email)
                 .addParams("code", code).build().execute(new StringCallback() {
@@ -238,7 +257,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(String response, int id) {
                 UserInfo userInfo = new Gson().fromJson(response, UserInfo.class);
                 if (userInfo.getCode() == 200) {
-
                     Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     SharedPreferences usermessage = getSharedPreferences("usermessage", Context.MODE_PRIVATE);
                     SharedPreferences.Editor edit = usermessage.edit();
@@ -268,4 +286,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editText_yanzhengmaorpassworld1.setVisibility(View.GONE);
         view1.setVisibility(View.GONE);
     }
+    //密码登录
+     private void Loginpwd(String email,String passworld){
+         OkHttpClient okHttpClient=new OkHttpClient();
+         Request request=new Request.Builder().url("http://ven6.com/user/loginpwd?email="+email+"&pwd="+ MD5.getMD5(passworld)).build();
+         okHttpClient.newCall(request).enqueue(new Callback() {
+             @Override
+             public void onFailure(Call call, IOException e) {
+             }
+
+             @Override
+             public void onResponse(Call call, Response response) throws IOException {
+                 try {
+                     JSONObject jsonObject=new JSONObject(response.body().string());
+                     Log.d("qqq", "onResponse: "+jsonObject);
+                     int code=jsonObject.getInt("code");
+                     String token=jsonObject.getString("token");
+                     Log.d("qqq", "onResponse: "+code);
+                     if (code==200){
+                         startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                     }
+                     progressDialog.cancel();
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+                 }
+             }
+         });
+     }
 }

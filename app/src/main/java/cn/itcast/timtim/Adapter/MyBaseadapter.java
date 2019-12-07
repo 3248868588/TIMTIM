@@ -66,7 +66,6 @@ public class MyBaseadapter extends BaseAdapter {
         viewHolder.textView_attraddress.setText(dataBeans.get(position).getAddress());
         return view;
     }
-
     class ViewHolder {
         ImageView imageView_attr;
         TextView textView_attrname;

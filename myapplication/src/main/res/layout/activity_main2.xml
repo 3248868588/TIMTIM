@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginPage.startActivity">
+    tools:context=".Main2Activity">
 
-    <ImageView
-        android:layout_gravity="center"
-        android:background="@drawable/bg_start"
+    <GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:numColumns="4"></GridView>
 </LinearLayout>

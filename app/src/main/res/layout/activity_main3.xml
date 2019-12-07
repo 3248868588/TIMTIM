@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#08D5F0"
     android:orientation="vertical"
-    tools:context=".ForgetActivity">
+    tools:context=".LoginPage.ForgetActivity">
 
     <TextView
         android:layout_marginTop="30dp"

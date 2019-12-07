@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AttrDetails">
+    tools:context=".ShowPage.AttrDetails">
     <!--<ScrollView-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content">-->
@@ -106,9 +106,11 @@
             android:id="@+id/list_attrDetails"
             android:layout_width="395dp"
             android:layout_height="415dp"
+            android:layout_marginBottom="8dp"
+            android:divider="@null"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:layout_marginBottom="8dp"
+            android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,10 +123,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="28dp"
             android:text="景点名"
-            android:visibility="gone"
             android:textColor="#fff"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

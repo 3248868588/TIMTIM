@@ -1,4 +1,4 @@
-package cn.itcast.timtim;
+package cn.itcast.timtim.LoginPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -15,8 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.itcast.timtim.Adapter.MyFragmentPagerAdapter;
+import cn.itcast.timtim.PersonalPage.Personal_BlankFragment;
+import cn.itcast.timtim.R;
+import cn.itcast.timtim.ShowPage.Show_BlankFragment;
 
-public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,
+public class    HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,
         View.OnClickListener {
     TextView textView_shouye, textView_personal;
     ImageButton imageButton_show, imageButton_personal;
@@ -28,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.activity_home);
         textView_shouye = findViewById(R.id.tv_shouye);
         textView_personal = findViewById(R.id.tv_personal);

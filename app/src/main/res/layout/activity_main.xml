@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#08D5F0"
+    android:paddingTop="24dp"
     android:orientation="vertical">
 
     <ImageButton
@@ -152,6 +153,7 @@
             android:layout_width="31dp"
             android:layout_height="25dp"
             android:layout_marginRight="20dp"
+            android:layout_gravity="center"
             android:background="@drawable/login_invisible" />
 
     </LinearLayout>

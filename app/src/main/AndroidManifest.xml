@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AttrDetails"></activity>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ForgetActivity" />
-        <activity android:name=".startActivity">
+        <activity android:name=".LoginPage.SetPasswold"></activity>
+        <activity android:name=".PersonalPage.Personalmessage" />
+        <activity android:name=".PersonalPage.RecordingPage" />
+        <activity android:name=".PersonalPage.BIllPage" />
+        <activity android:name=".ShowPage.Show_picture" />
+        <activity android:name=".ShowPage.AttrDetails" />
+        <activity android:name=".LoginPage.HomeActivity" />
+        <activity android:name=".LoginPage.MainActivity" />
+        <activity android:name=".LoginPage.ForgetActivity" />
+        <activity android:name=".LoginPage.startActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

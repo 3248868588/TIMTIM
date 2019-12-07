@@ -1,4 +1,4 @@
-package cn.itcast.timtim;
+package cn.itcast.timtim.ShowPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,14 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.itcast.timtim.Adapter.MyAttrDetaionsAdapter;
-import cn.itcast.timtim.entity.Detais;
+import cn.itcast.timtim.R;
 import cn.itcast.timtim.entity.Titleandcontext;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,6 +33,7 @@ import okhttp3.Response;
 
 public class AttrDetails extends AppCompatActivity {
     List<Titleandcontext> titleandcontextList = new ArrayList<>();
+    Button button_lookimage;
     ImageView imageView_attr;
     ListView listView;
     TextView textView_attrname;
@@ -42,17 +42,29 @@ public class AttrDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.activity_attr_details);
+        button_lookimage = findViewById(R.id.button_lookimage);
         listView = findViewById(R.id.list_attrDetails);
         textView_attrname = findViewById(R.id.textView_attrname);
-        imageView_attr=findViewById(R.id.imageView_attrimage);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        int Id = bundle.getInt("id");
-        String name = bundle.getString("name");
+        imageView_attr = findViewById(R.id.imageView_attrimage);
+        final Intent intent = getIntent();
+//        final Bundle bundle = intent.getExtras();
+        final int Id = intent.getIntExtra("id", -1);
+        String name = intent.getStringExtra("name");
         textView_attrname.setText(name);
         getAttrDetails(Id);
-
+        button_lookimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(AttrDetails.this, Show_picture.class);
+                int ID = Id;
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", ID);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+            }
+        });
     }
 
     private void getAttrDetails(int Id) {
@@ -81,7 +93,6 @@ public class AttrDetails extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
             }
 
             @Override

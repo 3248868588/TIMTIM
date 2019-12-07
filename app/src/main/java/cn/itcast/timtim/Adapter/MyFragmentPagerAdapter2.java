@@ -10,20 +10,21 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-    List<Fragment> fragments;
-    public MyFragmentPagerAdapter(@NonNull FragmentManager fm,List<Fragment> fragments) {
+public class MyFragmentPagerAdapter2 extends FragmentPagerAdapter {
+    List<Fragment> fragmentList=new ArrayList<>();
+    public MyFragmentPagerAdapter2(@NonNull FragmentManager fm,List<Fragment> fragmentList) {
         super(fm);
-        this.fragments=fragments;
+        this.fragmentList=fragmentList;
     }
+
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return fragments.get(position);
+        return fragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return fragments.size();
+        return fragmentList.size();
     }
 }

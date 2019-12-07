@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginPage.SetPasswold">
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:text="密码设置"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/et_SetPasswold"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:hint="请设置你的密码"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_SetPasswold"
+        android:text="完成"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_Skip"
+        android:text="跳过"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:drawableBottom="@drawable/back"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/radius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
