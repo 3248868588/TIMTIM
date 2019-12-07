@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 progressDialog.show();
                 if (textView_title.getText().equals("邮箱验证码登录")){
                     login(editText_Emailnumberorphonenumber.getText().toString(), editText_yanzhengmaorpassworld.getText().toString());
-                }else {
+                }if (textView_title.getText().equals("账号密码登录")){
                     Loginpwd(editText_Emailnumberorphonenumber.getText().toString(),editText_yanzhengmaorpassworld.getText().toString());
                 }
                 break;
@@ -268,7 +268,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     edit.putString("phone", userInfo.getData().getPhone());
                     edit.putString("token", userInfo.getData().getToken());
                     edit.commit();
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    Intent intent=new Intent(MainActivity.this, SetPasswold.class);
+                    String token=userInfo.getData().getToken();
+                    intent.putExtra("token",token);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "登录失败，请输入正确的邮箱和验证码！", Toast.LENGTH_SHORT).show();
                 }

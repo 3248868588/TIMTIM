@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C0E5EB"
     android:orientation="vertical"
     tools:context=".LoginPage.SetPasswold">
 
     <TextView
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="密码设置"
         android:gravity="center"
         android:textSize="25dp"
@@ -16,21 +17,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/et_SetPasswold"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
         android:hint="请设置你的密码"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:inputType="numberPassword"
+        android:background="#00000000"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+        <ImageButton
+            android:id="@+id/image2"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/login_invisible" />
+</LinearLayout>
+
+    <View
+        android:background="#000"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"/>
     <Button
         android:id="@+id/btn_SetPasswold"
         android:text="完成"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/radius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
